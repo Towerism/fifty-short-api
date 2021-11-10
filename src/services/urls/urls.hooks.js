@@ -7,9 +7,9 @@ module.exports = {
     get: [],
     create: [async context => {
       const shortened = shorturl(context.data.url)
-      const existing = await context.service.get(shortened)
-      if (existing) {
-        context.result = existing
+      const { data } = await context.service.find({ query: { shortened } })
+      if (data.length) {
+        context.result = data[0]
         return context
       }
       context.data.shortened = shortened
