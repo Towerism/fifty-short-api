@@ -1,14 +1,11 @@
 // See https://vincit.github.io/objection.js/#models
 // for more of what you can do here.
+
 const { Model } = require('objection')
 
-class Urls extends Model {
+class PrankUrls extends Model {
   static get tableName () {
-    return 'urls'
-  }
-
-  static get idColumn () {
-    return 'shortened'
+    return 'prank_urls'
   }
 
   static get jsonSchema () {
@@ -17,6 +14,7 @@ class Urls extends Model {
       required: ['shortened', 'url'],
 
       properties: {
+        id: { type: 'integer' },
         shortened: { type: 'string' },
         url: { type: 'string' },
         createdAt: { type: 'string' },
@@ -24,6 +22,19 @@ class Urls extends Model {
       }
     }
   }
+
+  static get relationMappings () {
+    return {
+      owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: require('./urls.model')(),
+        join: {
+          from: 'prank_urls.shortened',
+          to: 'urls.shortened'
+        }
+      }
+    }
+  };
 
   $beforeInsert () {
     this.createdAt = this.updatedAt = new Date().toISOString()
@@ -35,5 +46,5 @@ class Urls extends Model {
 }
 
 module.exports = function (app) {
-  return Urls
+  return PrankUrls
 }

@@ -26,10 +26,10 @@
   "scripts": {
     "test": "npm run lint && npm run jest",
     "lint": "standard",
-    "dev": "nodemon --inspect src/",
+    "dev": "nodemon src/",
     "start": "node src/",
     "jest": "jest  --forceExit",
-    "db:migration:create": "knex migrate:make",
+    "db:migration:create": "knex migrate:make --stub migrations/migration.stub",
     "db:migrate:latest": "knex migrate:latest",
     "db:migrate:rollback": "knex migrate:rollback"
   },

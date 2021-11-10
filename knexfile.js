@@ -2,14 +2,14 @@
 
 module.exports = {
   development: {
-    client: "postgresql",
-    connection: "postgres://user:secret@localhost/fifty_short_api",
+    client: 'postgresql',
+    connection: 'postgres://user:secret@localhost/fifty_short_api',
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      tableName: "knex_migrations",
-    },
-  },
-};
+      tableName: 'knex_migrations'
+    }
+  }
+}

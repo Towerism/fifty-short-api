@@ -1,0 +1,8 @@
+const app = require('../src/app')
+const db = app.get('knex')
+
+exports.up = function () {
+}
+
+exports.down = function () {
+}
