@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:11.5
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: fifty_short_api
