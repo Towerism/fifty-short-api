@@ -51,12 +51,15 @@
     "feathers-objection": "^7.5.1",
     "helmet": "^4.6.0",
     "knex": "^0.95.14",
+    "lodash": "^4.17.21",
     "objection": "^2.2.18",
     "pg": "^8.7.1",
+    "random-weighted-item": "^1.1.9",
     "serve-favicon": "^2.5.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.176",
     "axios": "^0.24.0",
     "jest": "^27.3.1",
     "nodemon": "^2.0.14",

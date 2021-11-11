@@ -1,4 +1,6 @@
 const { shorturl } = require('@zodash/shorturl')
+const getRandomItem = require('random-weighted-item').default
+const { pick } = require('lodash')
 
 module.exports = {
   before: {
@@ -23,7 +25,19 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [async context => {
+      const shortened = context.id
+      // get the prank-urls service
+      const prankUrls = context.app.service('prank-urls')
+      // find the prank-urls with the shortened url
+      const { data } = await prankUrls.find({ query: { shortened } })
+      if (data.length) {
+        const prankUrl = getRandomItem([context.result, ...data], (prankUrl) => prankUrl.weight)
+        context.result = prankUrl
+        return context
+      }
+      return context
+    }, context => { context.result = pick(context.result, ['url']) }],
     create: [],
     update: [],
     patch: [],
